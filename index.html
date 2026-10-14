@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aşırı Hidrasyon ve Minimal JS Karşılaştırması</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+        h1, h2 { color: #0056b3; }
+        .container { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px; justify-content: center; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; width: 320px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); background-color: white; }
+        .card h3 { margin-top: 0; color: #333; }
+        .card button { background-color: #007bff; color: white; border: none; padding: 10px 18px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-size: 1rem; transition: background-color 0.2s ease; }
+        .card button:hover { background-color: #0056b3; }
+        .cart-info { margin-top: 15px; font-weight: bold; color: #555; }
+        .explanation { background-color: #e0f7fa; border-left: 5px solid #00bcd4; padding: 20px; margin-bottom: 30px; border-radius: 8px; }
+        .explanation p { margin: 0 0 10px 0; }
+        .explanation p:last-child { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+
+    <h1>E-Ticaret Uygulamalarında Aşırı Hidrasyonu Ortadan Kaldırmak</h1>
+    <div class="explanation">
+        <p>Bu örnek, modern e-ticaret uygulamalarında karşılaşılan <strong>"aşırı hidrasyon"</strong> sorununu ve buna karşı <strong>"minimal JavaScript"</strong> stratejisinin nasıl bir çözüm sunduğunu göstermektedir.</p>
+        <p>Soldaki <strong>"Aşırı Hidrasyon"</strong> örneği, tüm sayfanın etkileşimli hale gelmesi için büyük bir JavaScript paketinin yüklendiği ve çalıştırıldığı tipik bir senaryoyu simüle eder. Sağdaki <strong>"Minimal JS"</strong> örneği ise, sadece belirli bir bileşenin ihtiyaç duyduğu JavaScript'in, sadece o bileşen için yüklendiği ve çalıştırıldığı bir yaklaşımı gösterir.</p>
+        <p>Tarayıcınızın geliştirici konsolunu (F12) açarak, her iki yaklaşımın JavaScript yükleme ve yürütme farklılıklarını gözlemleyebilirsiniz.</p>
+    </div>
+
+    <div class="container">
+        <!-- Simulated Over-Hydration Example -->
+        <div class="card">
+            <h2>Aşırı Hidrasyon (Simüle Edilmiş)</h2>
+            <p>Bu bileşen, tüm sayfa için geçerli olan büyük bir JavaScript paketi tarafından "hidrate" edilmiştir. (Konsolu kontrol edin)</p>
+            <h3>Akıllı Saat X</h3>
+            <p>Fiyat: <strong>1999.99 TL</strong></p>
+            <button id="addToCartHydrated">Sepete Ekle</button>
+            <div class="cart-info">Sepetinizde: <span id="cartCountHydrated">0</span> adet</div>
+        </div>
+
+        <!-- Minimal JS Strategy Example -->
+        <div class="card">
+            <h2>Minimal JS Stratejisi</h2>
+            <p>Bu bileşen, sadece kendi ihtiyacı olan minimal JavaScript ile çalışır. (Konsolu kontrol edin)</p>
+            <h3>Kablosuz Kulaklık Y</h3>
+            <p>Fiyat: <strong>1249.99 TL</strong></p>
+            <button id="addToCartMinimal">Sepete Ekle</button>
+            <div class="cart-info">Sepetinizde: <span id="cartCountMinimal">0</span> adet</div>
+        </div>
+    </div>
+
+    <!-- Simulated Large Framework/Hydration Script -->
+    <script>
+        // --- SIMULATED LARGE FRAMEWORK / HYDRATION BUNDLE (OVER-HYDRATION) ---
+        // This script block simulates a large JavaScript bundle that a typical SPA framework
+        // might load to "hydrate" an entire page, even if only a small part is interactive.
+        // In a real scenario, this would be a separate, often large, .js file loaded globally.
+        // We add many comments and dummy functions to simulate its size and complexity, 
+        // representing the overhead of loading a full framework for simple tasks.
+
+        console.log("--------------------------------------------------");
+        console.log("Simulated Framework: Global application initialization started...");
+        
+        // Simulate complex framework core setup
+        let globalAppState = {
+            user: null,
+            cart: { items: [], total: 0 },
+            settings: { theme: 'light', language: 'tr', notifications: true }
+        };
+
+        function initializeRouter() {
+            console.log("Simulated Framework: Setting up client-side router (e.g., for /products, /cart, /checkout)...");
+            // Hundreds of lines of routing logic, history API management, route guards, etc.
+        }
+
+        function setupGlobalStateManagement() {
+            console.log("Simulated Framework: Initializing global state store (e.g., Redux, Vuex, Zustand)...");
+            // Logic for centralized state, reducers, actions, mutations, selectors, subscriptions.
+        }
+
+        class ComponentLifecycleManager {
+            constructor() { this.activeComponents = new Map(); }
+            mount(componentId, props) { 
+                console.log(`Simulated Framework: Mounting component '${componentId}'...`); 
+                // Complex component rendering, virtual DOM diffing, reconciliation logic.
+            }
+            update(componentId, newProps) { 
+                console.log(`Simulated Framework: Updating component '${componentId}'...`); 
+                // Re-rendering, effect cleanup, dependency tracking.
+            }
+            unmount(componentId) { 
+                console.log(`Simulated Framework: Unmounting component '${componentId}'...`); 
+                // Resource cleanup, event listener removal.
+            }
+            // ... many other framework-specific methods for performance optimization, 
+            // server-side rendering hydration, error boundaries, context providers, etc.
+            // This section is intentionally verbose to simulate a large JS bundle's footprint.
+            // In a real application, this could easily be hundreds of kilobytes or megabytes 
+            // of parsed and executed JavaScript, even if only a small part of the page 
+            // actually needs interactivity. This overhead is what "over-hydration" refers to.
+        }
+
+        const appManager = new ComponentLifecycleManager();
+        initializeRouter();
+        setupGlobalStateManagement();
+
+        // --- Actual hydration logic for the "Over-Hydrated" product card ---
+        let hydratedCartCount = 0;
+        const hydratedCartCountSpan = document.getElementById('cartCountHydrated');
+        const addToCartHydratedButton = document.getElementById('addToCartHydrated');
+
+        if (addToCartHydratedButton && hydratedCartCountSpan) {
+            addToCartHydratedButton.addEventListener('click', () => {
+                hydratedCartCount++;
+                hydratedCartCountSpan.textContent = hydratedCartCount;
+                console.log("Simulated Framework: Product 'Akıllı Saat X' added to cart. New count:", hydratedCartCount);
+                // In a real framework, this might trigger global state updates, 
+                // re-renders of other components, side effects, etc.
+            });
+            appManager.mount('product-card-hydrated', { productId: 'X', initialCount: 0 });
+            console.log("Simulated Framework: Product 'Akıllı Saat X' 'Add to Cart' button hydrated by the global bundle.");
+        } else {
+            console.warn("Simulated Framework: Could not find elements for hydrated product card.");
+        }
+
+        console.log("Simulated Framework: Global hydration process complete for all registered components.");
+        console.log("--------------------------------------------------");
+        // --- END SIMULATED LARGE FRAMEWORK / HYDRATION BUNDLE ---
+    </script>
+
+    <!-- Minimal/Targeted JS Script -->
+    <script>
+        // --- MINIMAL / TARGETED JAVASCRIPT ---
+        // This script block contains only the necessary JavaScript for a specific component.
+        // It's loaded after the HTML it interacts with, and it's concise and focused.
+        // This demonstrates a "Zero-JS" or "Minimal-JS" strategy where JS is only used
+        // when absolutely necessary and is highly optimized for its specific task.
+
+        console.log("--------------------------------------------------");
+        console.log("Minimal JS: Initializing 'Kablosuz Kulaklık Y' component...");
+
+        let minimalCartCount = 0;
+        const minimalCartCountSpan = document.getElementById('cartCountMinimal');
+        const addToCartMinimalButton = document.getElementById('addToCartMinimal');
+
+        if (addToCartMinimalButton && minimalCartCountSpan) {
+            addToCartMinimalButton.addEventListener('click', () => {
+                minimalCartCount++;
+                minimalCartCountSpan.textContent = minimalCartCount;
+                console.log("Minimal JS: Product 'Kablosuz Kulaklık Y' added to cart. New count:", minimalCartCount);
+                // No global framework overhead, just direct DOM manipulation for this specific element.
+            });
+            console.log("Minimal JS: Product 'Kablosuz Kulaklık Y' 'Add to Cart' button initialized with targeted script.");
+        } else {
+            console.warn("Minimal JS: Could not find elements for minimal product card.");
+        }
+        console.log("Minimal JS: 'Kablosuz Kulaklık Y' component initialization complete.");
+        console.log("--------------------------------------------------");
+        // --- END MINIMAL / TARGETED JAVASCRIPT ---
+    </script>
+
+</body>
+</html>
